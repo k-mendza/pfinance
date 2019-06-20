@@ -1,8 +1,17 @@
-CREATE TABLE users (
-  id bigint(20) NOT NULL AUTO_INCREMENT,
-  username varchar(100) NOT NULL,
-  first_name varchar(50) NOT NULL,
-  last_name varchar(50) DEFAULT NULL,
-  PRIMARY KEY (id),
-  UNIQUE KEY UK_username (username)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE public."USERS"
+(
+    "ID" bigserial NOT NULL,
+    "FIRST_NAME" character varying NOT NULL,
+    "LAST_NAME" character varying NOT NULL,
+    "EMAIL_ADDRESS" character varying NOT NULL,
+    "CREATION_DATE" timestamp with time zone,
+    "LAST_ACTIVITY" timestamp with time zone,
+    PRIMARY KEY ("ID")
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public."USERS"
+    OWNER to postgres;
