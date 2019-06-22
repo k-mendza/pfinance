@@ -35,6 +35,7 @@ ALTER TABLE public."EXPENSE_CATEGORY"
 CREATE TABLE public."EXPENSE"
 (
     "ID" bigserial NOT NULL,
+    "USER_ID" bigserial NOT NULL,
     "DESCRIPTION" character varying,
     "AMOUNT" decimal NOT NULL,
     "CURRENCY_ID" character varying,
@@ -69,6 +70,7 @@ ALTER TABLE public."INCOME_CATEGORY"
 CREATE TABLE public."INCOME"
 (
     "ID" bigserial NOT NULL,
+    "USER_ID" bigserial NOT NULL,
     "DESCRIPTION" character varying,
     "AMOUNT" decimal NOT NULL,
     "CURRENCY_ID" character varying,
