@@ -1,4 +1,4 @@
-CREATE TABLE public."USERS"
+CREATE TABLE public."USER"
 (
     "ID" bigserial NOT NULL,
     "FIRST_NAME" character varying NOT NULL,
@@ -13,10 +13,10 @@ WITH (
 )
 TABLESPACE pg_default;
 
-ALTER TABLE public."USERS"
+ALTER TABLE public."USER"
     OWNER to postgres;
 
-CREATE TABLE public."TRANS_CATEGORY"
+CREATE TABLE public."EXPENSE_CATEGORY"
 (
     "ID" bigserial NOT NULL,
     "NAME" character varying NOT NULL,
@@ -29,30 +29,15 @@ CREATE TABLE public."TRANS_CATEGORY"
     )
     TABLESPACE pg_default;
 
-ALTER TABLE public."TRANS_CATEGORY"
+ALTER TABLE public."EXPENSE_CATEGORY"
     OWNER to postgres;
 
-CREATE TABLE public."TRANS_CATEGORY"
-(
-    "ID" bigserial NOT NULL,
-    "NAME" character varying NOT NULL,
-    "DESCRIPTION" character varying,
-    "CREATION_DATE" timestamp with time zone,
-    PRIMARY KEY ("ID")
-)
-    WITH (
-        OIDS = FALSE
-    )
-    TABLESPACE pg_default;
-
-ALTER TABLE public."TRANS_CATEGORY"
-    OWNER to postgres;
-
-CREATE TABLE public."TRANSACTION"
+CREATE TABLE public."EXPENSE"
 (
     "ID" bigserial NOT NULL,
     "DESCRIPTION" character varying,
     "AMOUNT" decimal NOT NULL,
+    "CURRENCY_ID" character varying,
     "CREATION_DATE" timestamp with time zone,
     "CATEGORY_ID" bigserial NOT NULL ,
     PRIMARY KEY ("ID")
@@ -62,5 +47,39 @@ CREATE TABLE public."TRANSACTION"
     )
     TABLESPACE pg_default;
 
-ALTER TABLE public."TRANS_CATEGORY"
+ALTER TABLE public."EXPENSE"
+    OWNER to postgres;
+
+CREATE TABLE public."INCOME_CATEGORY"
+(
+    "ID" bigserial NOT NULL,
+    "NAME" character varying NOT NULL,
+    "DESCRIPTION" character varying,
+    "CREATION_DATE" timestamp with time zone,
+    PRIMARY KEY ("ID")
+)
+    WITH (
+        OIDS = FALSE
+    )
+    TABLESPACE pg_default;
+
+ALTER TABLE public."INCOME_CATEGORY"
+    OWNER to postgres;
+
+CREATE TABLE public."INCOME"
+(
+    "ID" bigserial NOT NULL,
+    "DESCRIPTION" character varying,
+    "AMOUNT" decimal NOT NULL,
+    "CURRENCY_ID" character varying,
+    "CREATION_DATE" timestamp with time zone,
+    "CATEGORY_ID" bigserial NOT NULL ,
+    PRIMARY KEY ("ID")
+)
+    WITH (
+        OIDS = FALSE
+    )
+    TABLESPACE pg_default;
+
+ALTER TABLE public."INCOME"
     OWNER to postgres;
