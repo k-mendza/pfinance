@@ -1,87 +1,87 @@
-CREATE TABLE public."USER"
+CREATE TABLE public.app_user
 (
-    "ID" bigserial NOT NULL,
-    "FIRST_NAME" character varying NOT NULL,
-    "LAST_NAME" character varying NOT NULL,
-    "EMAIL_ADDRESS" character varying NOT NULL,
-    "CREATION_DATE" timestamp with time zone,
-    "LAST_ACTIVITY" timestamp with time zone,
-    PRIMARY KEY ("ID")
+    id bigserial NOT NULL,
+    first_name character varying NOT NULL,
+    last_name character varying NOT NULL,
+    email_address character varying NOT NULL,
+    creation_date timestamp with time zone,
+    last_activity timestamp with time zone,
+    PRIMARY KEY (id)
 )
 WITH (
-    OIDS = FALSE
+    OidS = FALSE
 )
 TABLESPACE pg_default;
 
-ALTER TABLE public."USER"
+ALTER TABLE public.app_user
     OWNER to postgres;
 
-CREATE TABLE public."EXPENSE_CATEGORY"
+CREATE TABLE public.expense_category
 (
-    "ID" bigserial NOT NULL,
-    "NAME" character varying NOT NULL,
-    "DESCRIPTION" character varying,
-    "CREATION_DATE" timestamp with time zone,
-    PRIMARY KEY ("ID")
+    id bigserial NOT NULL,
+    name character varying NOT NULL,
+    description character varying,
+    creation_date timestamp with time zone,
+    PRIMARY KEY (id)
 )
     WITH (
-        OIDS = FALSE
+        OidS = FALSE
     )
     TABLESPACE pg_default;
 
-ALTER TABLE public."EXPENSE_CATEGORY"
+ALTER TABLE public.expense_category
     OWNER to postgres;
 
-CREATE TABLE public."EXPENSE"
+CREATE TABLE public.expense
 (
-    "ID" bigserial NOT NULL,
-    "USER_ID" bigserial NOT NULL,
-    "DESCRIPTION" character varying,
-    "AMOUNT" decimal NOT NULL,
-    "CURRENCY_ID" character varying,
-    "CREATION_DATE" timestamp with time zone,
-    "CATEGORY_ID" bigserial NOT NULL ,
-    PRIMARY KEY ("ID")
+    id bigserial NOT NULL,
+    APP_USER_id bigserial NOT NULL,
+    description character varying,
+    amount decimal NOT NULL,
+    currency_id character varying,
+    creation_date timestamp with time zone,
+    category_id bigserial NOT NULL ,
+    PRIMARY KEY (id)
 )
     WITH (
-        OIDS = FALSE
+        OidS = FALSE
     )
     TABLESPACE pg_default;
 
-ALTER TABLE public."EXPENSE"
+ALTER TABLE public.expense
     OWNER to postgres;
 
-CREATE TABLE public."INCOME_CATEGORY"
+CREATE TABLE public.income_category
 (
-    "ID" bigserial NOT NULL,
-    "NAME" character varying NOT NULL,
-    "DESCRIPTION" character varying,
-    "CREATION_DATE" timestamp with time zone,
-    PRIMARY KEY ("ID")
+    id bigserial NOT NULL,
+    name character varying NOT NULL,
+    description character varying,
+    creation_date timestamp with time zone,
+    PRIMARY KEY (id)
 )
     WITH (
-        OIDS = FALSE
+        OidS = FALSE
     )
     TABLESPACE pg_default;
 
-ALTER TABLE public."INCOME_CATEGORY"
+ALTER TABLE public.income_category
     OWNER to postgres;
 
-CREATE TABLE public."INCOME"
+CREATE TABLE public.income
 (
-    "ID" bigserial NOT NULL,
-    "USER_ID" bigserial NOT NULL,
-    "DESCRIPTION" character varying,
-    "AMOUNT" decimal NOT NULL,
-    "CURRENCY_ID" character varying,
-    "CREATION_DATE" timestamp with time zone,
-    "CATEGORY_ID" bigserial NOT NULL ,
-    PRIMARY KEY ("ID")
+    id bigserial NOT NULL,
+    app_user_id bigserial NOT NULL,
+    description character varying,
+    amount decimal NOT NULL,
+    currency_id character varying,
+    creation_date timestamp with time zone,
+    category_id bigserial NOT NULL,
+    PRIMARY KEY (id)
 )
     WITH (
-        OIDS = FALSE
+        OidS = FALSE
     )
     TABLESPACE pg_default;
 
-ALTER TABLE public."INCOME"
+ALTER TABLE public.income
     OWNER to postgres;
