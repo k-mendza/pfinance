@@ -223,8 +223,25 @@ VALUES (10 ,'Podatki','Podatki', current_date);
 INSERT INTO expense_subcategory (category_id, name, description, creation_date)
 VALUES (10 ,'Inne','Inne', current_date);
 
--- EXPENSES
-INSERT INTO expense (app_user_id, title, description, amount, currency_id, category_id, subcategory_id)
-VALUES (1, 'Zakupy', 'Biedronka', 50.0, 1, 1, 1);
+-- PAYEE --
+INSERT INTO payee (name, description, creation_date)
+VALUES ('Biedronka', 'Sieć sklepów Jeronimo Martins', current_date);
 
+INSERT INTO payee (name, description, creation_date)
+VALUES ('Chang Jang', 'Właściciel chinola', current_date);
+
+-- CURRENCY --
+INSERT INTO currency (id, description, creation_date)
+VALUES ('PLN', 'Polski złoty', current_date);
+
+-- PAY SOURCES --
+INSERT INTO pay_source (name, description, creation_date)
+VALUES ('Karta IDEA', 'Karta płatnicza IDEA Banku', current_date);
+
+-- EXPENSES --
+INSERT INTO expense (app_user_id, payee_id, pay_source_id, title, description, amount, currency_id, creation_date, category_id, subcategory_id)
+VALUES (1, 1, 1, 'Zakupy', 'Biedronka', 50.0, 'PLN', current_date, 1, 1);
+
+INSERT INTO expense (app_user_id, payee_id, pay_source_id, title, description, amount, currency_id, creation_date, category_id, subcategory_id)
+VALUES (1, 2, 1, 'Obiad', 'Chińczyk', 20.0, 'PLN', current_date,1, 3);
 commit;
