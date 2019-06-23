@@ -222,6 +222,7 @@ VALUES (10 ,'Podatki','Podatki', current_date);
 
 INSERT INTO expense_subcategory (category_id, name, description, creation_date)
 VALUES (10 ,'Inne','Inne', current_date);
+
 -- EXPENSES
 INSERT INTO expense (app_user_id, title, description, amount, currency_id, category_id, subcategory_id)
 VALUES (1, 'Zakupy', 'Biedronka', 50.0, 1, 1, 1);
