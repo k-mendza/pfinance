@@ -59,8 +59,8 @@ CREATE TABLE public.expense
     description character varying,
     amount decimal NOT NULL,
     currency_id character varying,
-    payment_date timestamp with time zone,
-    creation_date timestamp with time zone,
+    payment_date timestamp,
+    creation_date timestamp,
     category_id bigserial NOT NULL,
     subcategory_id bigserial NOT NULL,
     PRIMARY KEY (id)
