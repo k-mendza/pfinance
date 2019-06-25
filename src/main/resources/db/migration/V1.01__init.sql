@@ -4,8 +4,8 @@ CREATE TABLE public.app_user
     first_name character varying NOT NULL,
     last_name character varying NOT NULL,
     email_address character varying NOT NULL,
-    creation_date timestamp with time zone,
-    last_activity timestamp with time zone,
+    creation_date timestamp,
+    last_activity_date timestamp,
     PRIMARY KEY (id)
 )
 WITH (
