@@ -21,8 +21,9 @@ public class Expense {
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq")
     private Long id;
 
-    @Column(name = "app_user_id")
-    private Long appUserId;
+    @OneToOne
+    @MapsId
+    private AppUser appUser;
 
     @Column(name = "payee_id")
     private Long payeeId;
