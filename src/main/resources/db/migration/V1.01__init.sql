@@ -21,7 +21,7 @@ CREATE TABLE public.expense_category
     id bigserial NOT NULL,
     name character varying NOT NULL,
     description character varying,
-    creation_date timestamp with time zone,
+    creation_date timestamp,
     PRIMARY KEY (id)
 )
     WITH (
@@ -38,7 +38,7 @@ CREATE TABLE public.expense_subcategory
     category_id bigserial NOT NULL,
     name character varying NOT NULL,
     description character varying,
-    creation_date timestamp with time zone,
+    creation_date timestamp,
     PRIMARY KEY (id)
 )
     WITH (
@@ -78,7 +78,7 @@ CREATE TABLE public.income_category
     id bigserial NOT NULL,
     name character varying NOT NULL,
     description character varying,
-    creation_date timestamp with time zone,
+    creation_date timestamp,
     PRIMARY KEY (id)
 )
     WITH (
@@ -95,7 +95,7 @@ CREATE TABLE public.income_subcategory
     category_id bigserial NOT NULL,
     name character varying NOT NULL,
     description character varying,
-    creation_date timestamp with time zone,
+    creation_date timestamp,
     PRIMARY KEY (id)
 )
     WITH (
@@ -116,8 +116,8 @@ CREATE TABLE public.income
     description character varying,
     amount decimal NOT NULL,
     currency_id character varying,
-    payment_date timestamp with time zone,
-    creation_date timestamp with time zone,
+    payment_date timestamp,
+    creation_date timestamp,
     category_id bigserial NOT NULL,
     subcategory_id bigserial NOT NULL,
     PRIMARY KEY (id)
@@ -135,7 +135,7 @@ CREATE TABLE public.payee
     id bigserial NOT NULL,
     name character varying,
     description character varying,
-    creation_date timestamp with time zone,
+    creation_date timestamp,
     PRIMARY KEY (id)
 )
     WITH (
@@ -151,7 +151,7 @@ CREATE TABLE public.pay_source
     id bigserial NOT NULL,
     name character varying,
     description character varying,
-    creation_date timestamp with time zone,
+    creation_date timestamp,
     PRIMARY KEY (id)
 )
     WITH (
@@ -166,7 +166,7 @@ CREATE TABLE public.currency
 (
     id character varying NOT NULL,
     description character varying,
-    creation_date timestamp with time zone,
+    creation_date timestamp,
     PRIMARY KEY (id)
 )
     WITH (
@@ -182,7 +182,7 @@ CREATE TABLE public.currency_ratio
     id bigserial NOT NULL,
     pair character varying NOT NULL,
     ratio decimal NOT NULL,
-    creation_date timestamp with time zone,
+    creation_date timestamp,
     PRIMARY KEY (id)
 )
     WITH (
