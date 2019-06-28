@@ -15,10 +15,8 @@ import java.time.LocalDate;
 public class Currency {
 
     @Id
-    @Column(name = "id", columnDefinition = "NUMERIC(19,0)")
-    @SequenceGenerator(name="seq", sequenceName="currency_id_seq")
-    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="seq")
-    private Long id;
+    @Column(name = "id")
+    private String id;
 
     @Column(name = "description")
     private String description;
