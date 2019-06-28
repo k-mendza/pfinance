@@ -146,7 +146,7 @@ CREATE TABLE public.payee
 ALTER TABLE public.payee
     OWNER to postgres;
 
-CREATE TABLE public.pay_source
+        CREATE TABLE public.pay_source
 (
     id bigserial NOT NULL,
     name character varying,

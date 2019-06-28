@@ -16,7 +16,7 @@ import java.time.LocalDate;
 public class Expense {
 
     @Id
-    @Column(name = "id", columnDefinition = "NUMERIC(19,2)")
+    @Column(name = "id", columnDefinition = "NUMERIC(19,0)")
     @SequenceGenerator(name="seq", sequenceName="expense_id_seq")
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq")
     private Long id;
@@ -49,11 +49,11 @@ public class Expense {
     @Column(name = "creation_date", columnDefinition = "TIMESTAMP")
     private LocalDate creationDate;
 
-    @Column(name = "category_id", columnDefinition = "NUMERIC(19,2)")
+    @Column(name = "category_id", columnDefinition = "NUMERIC(19,0)")
     @NotNull
     private Long categoryId;
 
-    @Column(name = "subcategory_id", columnDefinition = "NUMERIC(19,2)")
+    @Column(name = "subcategory_id", columnDefinition = "NUMERIC(19,0)")
     @NotNull
     private Long subcategoryId;
 }

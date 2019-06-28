@@ -11,12 +11,12 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "payee")
-public class Payee {
+@Table(name = "pay_source")
+public class PaySource {
 
     @Id
     @Column(name = "id", columnDefinition = "NUMERIC(19,0)")
-    @SequenceGenerator(name="seq", sequenceName="payee_id_seq")
+    @SequenceGenerator(name="seq", sequenceName="pay_source_id_seq")
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq")
     private Long id;
 
@@ -28,5 +28,4 @@ public class Payee {
 
     @Column(name = "creation_date", columnDefinition = "TIMESTAMP")
     private LocalDate creationDate;
-
 }

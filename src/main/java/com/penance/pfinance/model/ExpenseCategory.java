@@ -16,7 +16,7 @@ import java.time.LocalDate;
 public class ExpenseCategory {
 
     @Id
-    @Column(name = "id", columnDefinition = "NUMERIC(19,2)")
+    @Column(name = "id", columnDefinition = "NUMERIC(19,0)")
     @SequenceGenerator(name="seq", sequenceName="expense_category_id_seq")
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq")
     private Long id;
