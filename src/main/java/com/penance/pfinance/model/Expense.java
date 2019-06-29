@@ -22,7 +22,6 @@ public class Expense {
     private Long id;
 
     @OneToOne
-    @MapsId
     private AppUser appUser;
 
     @Column(name = "payee_id")

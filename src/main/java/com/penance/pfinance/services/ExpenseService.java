@@ -1,40 +1,15 @@
 package com.penance.pfinance.services;
 
-import com.penance.pfinance.model.Expense;
-import com.penance.pfinance.repositories.ExpenseRepository;
+import com.penance.pfinance.api.DTO.ExpenseDTO;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
-public class ExpenseService implements CrudService<Expense, Long> {
+public interface ExpenseService {
 
-    private final ExpenseRepository expenseRepository;
+    List<ExpenseDTO> getAllExpenses();
 
-    public ExpenseService(ExpenseRepository expenseRepository) {
-        this.expenseRepository = expenseRepository;
-    }
+    ExpenseDTO getExpenseById(Long id);
 
-    @Override
-    public Iterable<Expense> findAll(){
-        return this.expenseRepository.findAll();
-    }
-
-    @Override
-    public Expense findById(Long id) {
-        return expenseRepository.findById(id).orElse(null);
-    }
-
-    @Override
-    public Expense save(Expense object) {
-        return expenseRepository.save(object);
-    }
-
-    @Override
-    public void delete(Expense object) {
-        expenseRepository.delete(object);
-    }
-
-    @Override
-    public void deleteById(Long id) {
-        expenseRepository.deleteById(id);
-    }
 }
