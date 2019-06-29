@@ -17,8 +17,8 @@ public class IncomeCategory {
 
     @Id
     @Column(name = "id", columnDefinition = "NUMERIC(19,0)")
-    @SequenceGenerator(name="seq", sequenceName="income_category_id_seq")
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq")
+    @SequenceGenerator(name="income_category_id_seq", sequenceName="income_category_id_seq")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="income_category_id_seq")
     private Long id;
 
     @NotNull

@@ -17,8 +17,8 @@ public class AppUser {
 
     @Id
     @Column(name = "id", columnDefinition = "NUMERIC(19,0)")
-    @SequenceGenerator(name="seq", sequenceName="app_user_id_seq")
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq")
+    @SequenceGenerator(name="app_user_id_seq", sequenceName="app_user_id_seq")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="app_user_id_seq")
     private Long id;
 
     @NotNull

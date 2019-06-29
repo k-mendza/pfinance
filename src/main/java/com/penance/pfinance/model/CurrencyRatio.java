@@ -17,8 +17,8 @@ public class CurrencyRatio {
 
     @Id
     @Column(name = "id", columnDefinition = "NUMERIC(19,0)")
-    @SequenceGenerator(name="seq", sequenceName="currency_ratio_id_seq")
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq")
+    @SequenceGenerator(name="currency_ratio_id_seq", sequenceName="currency_ratio_id_seq")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="currency_ratio_id_seq")
     private Long id;
 
     @NotNull

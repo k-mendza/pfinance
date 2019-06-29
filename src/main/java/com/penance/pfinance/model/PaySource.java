@@ -16,8 +16,8 @@ public class PaySource {
 
     @Id
     @Column(name = "id", columnDefinition = "NUMERIC(19,0)")
-    @SequenceGenerator(name="seq", sequenceName="pay_source_id_seq")
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq")
+    @SequenceGenerator(name="pay_source_id_seq", sequenceName="pay_source_id_seq")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="pay_source_id_seq")
     private Long id;
 
     @Column(name = "name")

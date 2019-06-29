@@ -17,8 +17,8 @@ public class Expense {
 
     @Id
     @Column(name = "id", columnDefinition = "NUMERIC(19,0)")
-    @SequenceGenerator(name="seq", sequenceName="expense_id_seq")
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq")
+    @SequenceGenerator(name="expense_id_seq", sequenceName="expense_id_seq")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="expense_id_seq")
     private Long id;
 
     @OneToOne
