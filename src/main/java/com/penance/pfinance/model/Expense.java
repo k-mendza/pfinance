@@ -1,6 +1,7 @@
 package com.penance.pfinance.model;
 
 import lombok.*;
+import org.hibernate.mapping.ToOne;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -21,14 +22,14 @@ public class Expense {
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="expense_id_seq")
     private Long id;
 
-    @OneToOne
+    @ManyToOne
     private AppUser appUser;
 
-    @Column(name = "payee_id")
-    private Long payeeId;
+    @ManyToOne
+    private Payee payee;
 
-    @Column(name = "pay_source_id")
-    private Long paySourceId;
+    @ManyToOne
+    private PaySource paySource;
 
     @Column(name = "title")
     private String title;
@@ -39,8 +40,8 @@ public class Expense {
     @Column(name = "amount", columnDefinition = "NUMERIC(19,2)")
     private Float amount;
 
-    @Column(name = "currency_id")
-    private String currencyId;
+    @ManyToOne
+    private Currency currency;
 
     @Column(name = "payment_date", columnDefinition = "TIMESTAMP")
     private LocalDate paymentDate;
@@ -48,11 +49,9 @@ public class Expense {
     @Column(name = "creation_date", columnDefinition = "TIMESTAMP")
     private LocalDate creationDate;
 
-    @Column(name = "category_id", columnDefinition = "NUMERIC(19,0)")
-    @NotNull
-    private Long categoryId;
+    @ManyToOne
+    private ExpenseCategory category;
 
-    @Column(name = "subcategory_id", columnDefinition = "NUMERIC(19,0)")
-    @NotNull
-    private Long subcategoryId;
+    @ManyToOne
+    private ExpenseSubcategory subcategory;
 }

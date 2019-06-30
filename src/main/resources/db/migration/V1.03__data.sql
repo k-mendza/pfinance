@@ -41,7 +41,7 @@ INSERT INTO expense_subcategory (category_id, name, description, creation_date)
 VALUES (1 ,'Jedzenie miasto','Jedzenie na mieście', current_date);
 
 INSERT INTO expense_subcategory (category_id, name, description, creation_date)
-VALUES (1 ,'Jedzenie prace','Jedzenie w/do pracy', current_date);
+VALUES (1 ,'Jedzenie praca','Jedzenie w/do pracy', current_date);
 
 INSERT INTO expense_subcategory (category_id, name, description, creation_date)
 VALUES (1 ,'Wyjścia','Wyjścia ze znajomymi', current_date);
