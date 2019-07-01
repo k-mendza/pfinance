@@ -1,4 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ExpenseService} from "./expense.service";
+import {Expense} from "./expense.model";
 
 export interface PeriodicElement {
   name: string;
@@ -28,7 +30,29 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['expenses.component.css'],
   templateUrl: 'expenses.component.html',
 })
-export class ExpensesComponent {
+export class ExpensesComponent implements OnInit{
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = ELEMENT_DATA;
+
+  expenses: Expense[];
+
+  constructor(private es: ExpenseService){
+
+  }
+
+  ngOnInit(){
+    this.getExpenses();
+  }
+
+  getExpenses(){
+    this.es.getExpenses().subscribe(
+      (expenses: Expense[]) => {
+        this.expenses = expenses;
+      },
+      (error) => console.log(error)
+    )
+  }
+
+
+
 }

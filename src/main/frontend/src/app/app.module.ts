@@ -6,6 +6,7 @@ import {ExpenseService} from "./expenses/expense.service";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatTableModule} from '@angular/material/table';
 import {ExpensesComponent} from "./expenses/expenses.component";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import {ExpensesComponent} from "./expenses/expenses.component";
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MatTableModule
+    MatTableModule,
+    HttpClientModule
   ],
   providers: [ExpenseService],
   bootstrap: [AppComponent]

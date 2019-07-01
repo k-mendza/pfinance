@@ -1,5 +1,6 @@
 import {Injectable} from "@angular/core";
 import {Expense} from "./expense.model";
+import {HttpClient} from "@angular/common/http";
 
 @Injectable()
 export class ExpenseService {
@@ -20,7 +21,11 @@ export class ExpenseService {
     )
   ];
 
+  constructor(private http: HttpClient){
+
+  }
+
   getExpenses() {
-    return this.expenses.slice();
+    return this.http.get('http://localhost:8090/api/expenses/');
   }
 }
