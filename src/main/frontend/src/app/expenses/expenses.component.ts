@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ExpenseService} from "./expense.service";
 import {Expense} from "./expense.model";
+import {Subscription} from "rxjs";
 
 export interface PeriodicElement {
   name: string;
@@ -30,9 +31,11 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['expenses.component.css'],
   templateUrl: 'expenses.component.html',
 })
-export class ExpensesComponent implements OnInit{
+export class ExpensesComponent implements OnInit,OnDestroy{
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = ELEMENT_DATA;
+
+  getExpensesSub: Subscription;
 
   expenses: Expense[];
 
@@ -41,11 +44,7 @@ export class ExpensesComponent implements OnInit{
   }
 
   ngOnInit(){
-    this.getExpenses();
-  }
-
-  getExpenses(){
-    this.es.getExpenses().subscribe(
+    this.getExpensesSub = this.es.getExpenses().subscribe(
       (expenses: Expense[]) => {
         this.expenses = expenses;
       },
@@ -53,6 +52,7 @@ export class ExpensesComponent implements OnInit{
     )
   }
 
-
-
+  ngOnDestroy(){
+    this.getExpensesSub.unsubscribe();
+  }
 }
