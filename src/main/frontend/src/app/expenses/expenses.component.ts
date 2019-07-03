@@ -16,7 +16,6 @@ export interface ExpenseElement {
   creationDate: string;
   categoryName: string;
   subcategoryName: string;
-
 }
 
 const EXPENSE_DATA: ExpenseElement[] = [
@@ -45,12 +44,13 @@ const EXPENSE_DATA: ExpenseElement[] = [
   templateUrl: 'expenses.component.html',
 })
 export class ExpensesComponent implements OnInit,OnDestroy{
+  expenses: ExpenseElement[];
   displayedColumns: string[] = ['id','title', 'amount', 'currencyId', 'paymentDate','categoryName','subcategoryName'];
-  dataSource = EXPENSE_DATA;
+  dataSource = this.expenses;
 
   getExpensesSub: Subscription;
 
-  expenses: Expense[];
+
 
   constructor(private es: ExpenseService){
 
@@ -58,7 +58,7 @@ export class ExpensesComponent implements OnInit,OnDestroy{
 
   ngOnInit(){
     this.getExpensesSub = this.es.getExpenses().subscribe(
-      (expenses: Expense[]) => {
+      (expenses: ExpenseElement[]) => {
         this.expenses = expenses;
       },
       (error) => console.log(error)
