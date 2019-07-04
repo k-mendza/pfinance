@@ -1,38 +1,22 @@
 import { DataSource } from '@angular/cdk/collections';
 import { MatPaginator, MatSort } from '@angular/material';
 import { map } from 'rxjs/operators';
-import { Observable, of as observableOf, merge } from 'rxjs';
+import {Observable, of as observableOf, merge, Subscription} from 'rxjs';
+import {ExpenseService} from "../expense.service";
+import {Expense} from "../expense.model";
 
-// Data model:
-export interface ExpensesTableItem {
-  id: number;
-  appUserLogin: string;
-  payeeName: string;
-  paySourceName: string;
-  title: string;
-  description: string;
-  amount: number;
-  currencyId: string;
-  paymentDate: string;
-  creationDate: string;
-  categoryName: string;
-  subcategoryName: string;
-}
-
-// TODO: replace this with real data from your application
-const EXAMPLE_DATA: ExpensesTableItem[] = [];
 
 /**
  * Data source for the ExpensesTable view. This class should
  * encapsulate all logic for fetching and manipulating the displayed data
  * (including sorting, pagination, and filtering).
  */
-export class ExpensesTableDataSource extends DataSource<ExpensesTableItem> {
-  data: ExpensesTableItem[] = EXAMPLE_DATA;
+export class ExpensesTableDataSource extends DataSource<Expense> {
+  data: Expense[];
   paginator: MatPaginator;
   sort: MatSort;
 
-  constructor() {
+  constructor(private expService: ExpenseService) {
     super();
   }
 
@@ -41,7 +25,7 @@ export class ExpensesTableDataSource extends DataSource<ExpensesTableItem> {
    * the returned stream emits new items.
    * @returns A stream of the items to be rendered.
    */
-  connect(): Observable<ExpensesTableItem[]> {
+  connect(): Observable<Expense[]> {
     // Combine everything that affects the rendered data into one update
     // stream for the data-table to consume.
     const dataMutations = [
@@ -65,7 +49,7 @@ export class ExpensesTableDataSource extends DataSource<ExpensesTableItem> {
    * Paginate the data (client-side). If you're using server-side pagination,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getPagedData(data: ExpensesTableItem[]) {
+  private getPagedData(data: Expense[]) {
     const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
     return data.splice(startIndex, this.paginator.pageSize);
   }
@@ -74,7 +58,7 @@ export class ExpensesTableDataSource extends DataSource<ExpensesTableItem> {
    * Sort the data (client-side). If you're using server-side sorting,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getSortedData(data: ExpensesTableItem[]) {
+  private getSortedData(data: Expense[]) {
     if (!this.sort.active || this.sort.direction === '') {
       return data;
     }
@@ -89,6 +73,17 @@ export class ExpensesTableDataSource extends DataSource<ExpensesTableItem> {
       }
     });
   }
+
+  loadData() {
+    this.expService.getExpenses().subscribe(
+      (expenses: Expense[]) => {
+        this.data = expenses;
+      },
+      (error) => console.log(error)
+    )
+  }
+
+
 }
 
 

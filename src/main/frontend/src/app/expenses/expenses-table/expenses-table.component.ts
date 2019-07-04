@@ -1,6 +1,8 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort, MatTable } from '@angular/material';
-import { ExpensesTableDataSource, ExpensesTableItem } from './expenses-table-datasource';
+import { ExpensesTableDataSource } from './expenses-table-datasource';
+import {ExpenseService} from "../expense.service";
+import {Expense} from "../expense.model";
 
 @Component({
   selector: 'app-expenses-table',
@@ -10,7 +12,7 @@ import { ExpensesTableDataSource, ExpensesTableItem } from './expenses-table-dat
 export class ExpensesTableComponent implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: false}) sort: MatSort;
-  @ViewChild(MatTable, {static: false}) table: MatTable<ExpensesTableItem>;
+  @ViewChild(MatTable, {static: false}) table: MatTable<Expense>;
   dataSource: ExpensesTableDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
@@ -20,8 +22,13 @@ export class ExpensesTableComponent implements AfterViewInit, OnInit {
     'amount','currencyId','paymentDate',
     'creationDate','categoryName','subcategoryName'];
 
+  constructor(private expService: ExpenseService){
+
+  }
+
   ngOnInit() {
-    this.dataSource = new ExpensesTableDataSource();
+    this.dataSource = new ExpensesTableDataSource(this.expService);
+    this.dataSource.loadData();
   }
 
   ngAfterViewInit() {

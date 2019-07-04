@@ -7,7 +7,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatTableModule} from '@angular/material/table';
 import {ExpensesComponent} from "./expenses/expenses.component";
 import {HttpClientModule} from "@angular/common/http";
-import { ExpensesTableComponent } from './expenses-table/expenses-table.component';
+import { ExpensesTableComponent } from './expenses/expenses-table/expenses-table.component';
 import { MatPaginatorModule, MatSortModule } from '@angular/material';
 
 @NgModule({
