@@ -3,35 +3,24 @@ import { MatPaginator, MatSort } from '@angular/material';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
 
-// TODO: Replace this with your own data model type
+// Data model:
 export interface ExpensesTableItem {
-  name: string;
   id: number;
+  appUserLogin: string;
+  payeeName: string;
+  paySourceName: string;
+  title: string;
+  description: string;
+  amount: number;
+  currencyId: string;
+  paymentDate: string;
+  creationDate: string;
+  categoryName: string;
+  subcategoryName: string;
 }
 
 // TODO: replace this with real data from your application
-const EXAMPLE_DATA: ExpensesTableItem[] = [
-  {id: 1, name: 'Hydrogen'},
-  {id: 2, name: 'Helium'},
-  {id: 3, name: 'Lithium'},
-  {id: 4, name: 'Beryllium'},
-  {id: 5, name: 'Boron'},
-  {id: 6, name: 'Carbon'},
-  {id: 7, name: 'Nitrogen'},
-  {id: 8, name: 'Oxygen'},
-  {id: 9, name: 'Fluorine'},
-  {id: 10, name: 'Neon'},
-  {id: 11, name: 'Sodium'},
-  {id: 12, name: 'Magnesium'},
-  {id: 13, name: 'Aluminum'},
-  {id: 14, name: 'Silicon'},
-  {id: 15, name: 'Phosphorus'},
-  {id: 16, name: 'Sulfur'},
-  {id: 17, name: 'Chlorine'},
-  {id: 18, name: 'Argon'},
-  {id: 19, name: 'Potassium'},
-  {id: 20, name: 'Calcium'},
-];
+const EXAMPLE_DATA: ExpensesTableItem[] = [];
 
 /**
  * Data source for the ExpensesTable view. This class should
@@ -93,13 +82,15 @@ export class ExpensesTableDataSource extends DataSource<ExpensesTableItem> {
     return data.sort((a, b) => {
       const isAsc = this.sort.direction === 'asc';
       switch (this.sort.active) {
-        case 'name': return compare(a.name, b.name, isAsc);
         case 'id': return compare(+a.id, +b.id, isAsc);
+        case 'appUserLogin': return compare(a.appUserLogin, b.appUserLogin, isAsc);
+
         default: return 0;
       }
     });
   }
 }
+
 
 /** Simple sort comparator for example ID/Name columns (for client-side sorting). */
 function compare(a, b, isAsc) {
