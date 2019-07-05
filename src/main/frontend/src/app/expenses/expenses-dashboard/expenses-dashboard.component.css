@@ -1,6 +1,6 @@
 .grid-container {
   margin: 20px;
-  height: 100px;
+  height: 200px;
 }
 
 .dashboard-card {
@@ -9,7 +9,7 @@
   left: 15px;
   right: 15px;
   bottom: 15px;
-  height: 100px;
+  height: 200px;
 }
 
 .more-button {
@@ -20,4 +20,8 @@
 
 .dashboard-card-content {
   text-align: center;
+}
+
+.details-table {
+  width: 100%;
 }
