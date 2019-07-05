@@ -8,13 +8,16 @@ import {MatTableModule} from '@angular/material/table';
 import {ExpensesComponent} from "./expenses/expenses.component";
 import {HttpClientModule} from "@angular/common/http";
 import { ExpensesTableComponent } from './expenses/expenses-table/expenses-table.component';
-import { MatPaginatorModule, MatSortModule } from '@angular/material';
+import { MatPaginatorModule, MatSortModule, MatGridListModule, MatCardModule, MatMenuModule, MatIconModule, MatButtonModule } from '@angular/material';
+import { ExpensesDashboardComponent } from './expenses/expenses-dashboard/expenses-dashboard.component';
+import { LayoutModule } from '@angular/cdk/layout';
 
 @NgModule({
   declarations: [
     AppComponent,
     ExpensesComponent,
-    ExpensesTableComponent
+    ExpensesTableComponent,
+    ExpensesDashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -22,7 +25,13 @@ import { MatPaginatorModule, MatSortModule } from '@angular/material';
     MatTableModule,
     HttpClientModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatGridListModule,
+    MatCardModule,
+    MatMenuModule,
+    MatIconModule,
+    MatButtonModule,
+    LayoutModule
   ],
   providers: [ExpenseService],
   bootstrap: [AppComponent]
