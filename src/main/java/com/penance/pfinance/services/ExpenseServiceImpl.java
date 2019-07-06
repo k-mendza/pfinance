@@ -31,4 +31,24 @@ public class ExpenseServiceImpl implements ExpenseService {
     public ExpenseDTO getExpenseById(Long id) {
         return expenseMapper.expenseToExpenseDTO(expenseRepository.findById(id).orElse(null));
     }
+
+    @Override
+    public ExpenseDTO createNewExpense(ExpenseDTO expenseDTO) {
+        return null;
+    }
+
+    @Override
+    public ExpenseDTO saveExpenseByDTO(Long id, ExpenseDTO expenseDTO) {
+        return null;
+    }
+
+    @Override
+    public ExpenseDTO patchExpense(Long id, ExpenseDTO expenseDTO) {
+        return null;
+    }
+
+    @Override
+    public void deleteExpenseById(Long id) {
+        expenseRepository.deleteById(id);
+    }
 }

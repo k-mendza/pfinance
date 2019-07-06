@@ -18,5 +18,5 @@ public interface ExpenseService {
 
     ExpenseDTO patchExpense(Long id, ExpenseDTO expenseDTO);
 
-    void deleteExpensebyId(Long id);
+    void deleteExpenseById(Long id);
 }
