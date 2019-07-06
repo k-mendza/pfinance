@@ -12,4 +12,11 @@ public interface ExpenseService {
 
     ExpenseDTO getExpenseById(Long id);
 
+    ExpenseDTO createNewExpense(ExpenseDTO expenseDTO);
+
+    ExpenseDTO saveExpenseByDTO(Long id, ExpenseDTO expenseDTO);
+
+    ExpenseDTO patchExpense(Long id, ExpenseDTO expenseDTO);
+
+    void deleteExpensebyId(Long id);
 }

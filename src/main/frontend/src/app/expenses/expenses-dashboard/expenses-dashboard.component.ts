@@ -13,12 +13,12 @@ export class ExpensesDashboardComponent {
     map(({ matches }) => {
       if (matches) {
         return [
-          { title: 'Card 1', cols: 1, rows: 1 }
+          { title: 'Podsumowanie', cols: 1, rows: 1 }
         ];
       }
 
       return [
-        { title: 'Card 1', cols: 2, rows: 1 }
+        { title: 'Podsumowanie', cols: 2, rows: 1 }
       ];
     })
   );
