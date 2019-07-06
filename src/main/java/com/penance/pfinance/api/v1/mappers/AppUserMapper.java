@@ -10,5 +10,7 @@ public interface AppUserMapper {
 
     AppUserMapper INSTANCE = Mappers.getMapper(AppUserMapper.class);
 
-    AppUserDTO appUserToAppUserDTO(AppUser transaction);
+    AppUserDTO appUserToAppUserDTO(AppUser appUser);
+
+    AppUser appUserDTOToAppUser(AppUserDTO appUserDTO);
 }

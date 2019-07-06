@@ -2,6 +2,7 @@ package com.penance.pfinance.services;
 
 import com.penance.pfinance.api.v1.DTO.TransactionDTO;
 import com.penance.pfinance.api.v1.mappers.TransactionMapper;
+import com.penance.pfinance.model.Transaction;
 import com.penance.pfinance.repositories.TransactionRepository;
 import org.springframework.stereotype.Service;
 
@@ -34,6 +35,9 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public TransactionDTO createNewTransaction(TransactionDTO transactionDTO) {
+
+        Transaction transaction = transactionMapper.transactionDTOToTransaction(transactionDTO);
+
         return null;
     }
 

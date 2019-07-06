@@ -9,7 +9,7 @@ public class TransactionDTO {
 
     private Long id;
 
-    private String appUserLogin;
+    private AppUserDTO appUserDTO;
 
     private String payeeName;
 

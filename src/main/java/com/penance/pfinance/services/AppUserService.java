@@ -12,6 +12,8 @@ public interface AppUserService {
 
     AppUserDTO getAppUserById(Long id);
 
+    AppUserDTO getAppUserByEmail(String email);
+
     AppUserDTO createNewAppUser(AppUserDTO appUserDTO);
 
     AppUserDTO saveAppUserByDTO(Long id, AppUserDTO appUserDTO);

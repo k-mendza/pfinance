@@ -2,6 +2,7 @@ package com.penance.pfinance.services;
 
 import com.penance.pfinance.api.v1.DTO.AppUserDTO;
 import com.penance.pfinance.api.v1.mappers.AppUserMapper;
+import com.penance.pfinance.model.AppUser;
 import com.penance.pfinance.repositories.AppUserRepository;
 import org.springframework.stereotype.Service;
 
@@ -35,6 +36,13 @@ public class AppUserServiceImpl implements AppUserService {
 
     @Override
     public AppUserDTO getAppUserById(Long id) {
+        AppUser appUser = appUserRepository.findById(id).orElse(null);
+        AppUserDTO appUserDTO = appUserMapper.appUserToAppUserDTO(appUser);
+        return appUserDTO;
+    }
+
+    @Override
+    public AppUserDTO getAppUserByEmail(String email) {
         return null;
     }
 
