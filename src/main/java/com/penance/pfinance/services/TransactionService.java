@@ -1,6 +1,6 @@
 package com.penance.pfinance.services;
 
-import com.penance.pfinance.api.DTO.TransactionDTO;
+import com.penance.pfinance.api.v1.DTO.TransactionDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

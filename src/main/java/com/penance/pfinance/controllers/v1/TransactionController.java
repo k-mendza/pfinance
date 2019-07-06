@@ -1,6 +1,6 @@
-package com.penance.pfinance.controllers;
+package com.penance.pfinance.controllers.v1;
 
-import com.penance.pfinance.api.DTO.TransactionDTO;
+import com.penance.pfinance.api.v1.DTO.TransactionDTO;
 import com.penance.pfinance.services.TransactionService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/api/transactions")
+@RequestMapping("/api/v1/transactions")
+@CrossOrigin(origins = "http://localhost:4200")
 public class TransactionController {
 
     private final TransactionService transactionService;
@@ -20,7 +21,6 @@ public class TransactionController {
     }
 
     @GetMapping
-    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<List<TransactionDTO>> getAllTransactions(){
         List<TransactionDTO> dtoList = transactionService.getAllTransactions();
         return new ResponseEntity<>( dtoList, HttpStatus.OK);

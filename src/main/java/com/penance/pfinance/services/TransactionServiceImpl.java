@@ -1,7 +1,7 @@
 package com.penance.pfinance.services;
 
-import com.penance.pfinance.api.DTO.TransactionDTO;
-import com.penance.pfinance.api.mappers.TransactionMapper;
+import com.penance.pfinance.api.v1.DTO.TransactionDTO;
+import com.penance.pfinance.api.v1.mappers.TransactionMapper;
 import com.penance.pfinance.repositories.TransactionRepository;
 import org.springframework.stereotype.Service;
 

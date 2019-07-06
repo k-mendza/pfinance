@@ -1,6 +1,7 @@
 package com.penance.pfinance.controllers;
 
-import com.penance.pfinance.api.DTO.TransactionDTO;
+import com.penance.pfinance.api.v1.DTO.TransactionDTO;
+import com.penance.pfinance.controllers.v1.TransactionController;
 import com.penance.pfinance.services.TransactionService;
 import org.junit.Before;
 import org.junit.Test;
@@ -54,7 +55,7 @@ public class TransactionControllerTest {
 
         when(transactionService.getAllTransactions()).thenReturn(categories);
 
-        mockMvc.perform(get("/api/transactions")
+        mockMvc.perform(get("/api/v1/transactions")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.transactions", hasSize(2)));
@@ -67,7 +68,7 @@ public class TransactionControllerTest {
 
         when(transactionService.getTransactionById(anyLong())).thenReturn(trans1);
 
-        mockMvc.perform(get("/api/transactions/1")
+        mockMvc.perform(get("/api/v1/transactions/1")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id", equalTo(ID)));

@@ -1,4 +1,4 @@
-package com.penance.pfinance.api.DTO;
+package com.penance.pfinance.api.v1.DTO;
 
 import lombok.Data;
 

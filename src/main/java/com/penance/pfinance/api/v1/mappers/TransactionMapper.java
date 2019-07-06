@@ -1,6 +1,6 @@
-package com.penance.pfinance.api.mappers;
+package com.penance.pfinance.api.v1.mappers;
 
-import com.penance.pfinance.api.DTO.TransactionDTO;
+import com.penance.pfinance.api.v1.DTO.TransactionDTO;
 import com.penance.pfinance.model.Transaction;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
