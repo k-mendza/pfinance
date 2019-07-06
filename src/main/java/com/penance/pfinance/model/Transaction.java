@@ -1,10 +1,8 @@
 package com.penance.pfinance.model;
 
 import lombok.*;
-import org.hibernate.mapping.ToOne;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Setter
@@ -13,13 +11,13 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "expense")
-public class Expense {
+@Table(name = "transaction")
+public class Transaction {
 
     @Id
     @Column(name = "id", columnDefinition = "NUMERIC(19,0)")
-    @SequenceGenerator(name="expense_id_seq", sequenceName="expense_id_seq")
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="expense_id_seq")
+    @SequenceGenerator(name="transaction_id_seq", sequenceName="transaction_id_seq")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="transaction_id_seq")
     private Long id;
 
     @ManyToOne
@@ -50,8 +48,8 @@ public class Expense {
     private LocalDate creationDate;
 
     @ManyToOne
-    private ExpenseCategory category;
+    private TransactionCategory category;
 
     @ManyToOne
-    private ExpenseSubcategory subcategory;
+    private TransactionSubcategory subcategory;
 }

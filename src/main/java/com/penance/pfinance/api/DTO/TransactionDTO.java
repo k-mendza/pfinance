@@ -1,14 +1,11 @@
 package com.penance.pfinance.api.DTO;
 
-import com.penance.pfinance.model.ExpenseCategory;
-import com.penance.pfinance.model.ExpenseSubcategory;
 import lombok.Data;
 
-import javax.persistence.ManyToOne;
 import java.time.LocalDate;
 
 @Data
-public class ExpenseDTO {
+public class TransactionDTO {
 
     private Long id;
 

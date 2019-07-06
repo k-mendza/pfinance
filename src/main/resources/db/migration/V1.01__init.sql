@@ -16,7 +16,7 @@ TABLESPACE pg_default;
 ALTER TABLE public.app_user
     OWNER to postgres;
 
-CREATE TABLE public.expense_category
+CREATE TABLE public.transaction_category
 (
     id bigserial NOT NULL,
     name character varying NOT NULL,
@@ -29,10 +29,10 @@ CREATE TABLE public.expense_category
     )
     TABLESPACE pg_default;
 
-ALTER TABLE public.expense_category
+ALTER TABLE public.transaction_category
     OWNER to postgres;
 
-CREATE TABLE public.expense_subcategory
+CREATE TABLE public.transaction_subcategory
 (
     id bigserial NOT NULL,
     category_id bigserial NOT NULL,
@@ -46,10 +46,10 @@ CREATE TABLE public.expense_subcategory
     )
     TABLESPACE pg_default;
 
-ALTER TABLE public.expense_subcategory
+ALTER TABLE public.transaction_subcategory
     OWNER to postgres;
 
-CREATE TABLE public.expense
+CREATE TABLE public.transaction
 (
     id bigserial NOT NULL,
     app_user_id bigserial NOT NULL,
@@ -70,64 +70,7 @@ CREATE TABLE public.expense
     )
     TABLESPACE pg_default;
 
-ALTER TABLE public.expense
-    OWNER to postgres;
-
-CREATE TABLE public.income_category
-(
-    id bigserial NOT NULL,
-    name character varying NOT NULL,
-    description character varying,
-    creation_date timestamp,
-    PRIMARY KEY (id)
-)
-    WITH (
-        OidS = FALSE
-    )
-    TABLESPACE pg_default;
-
-ALTER TABLE public.income_category
-    OWNER to postgres;
-
-CREATE TABLE public.income_subcategory
-(
-    id bigserial NOT NULL,
-    category_id bigserial NOT NULL,
-    name character varying NOT NULL,
-    description character varying,
-    creation_date timestamp,
-    PRIMARY KEY (id)
-)
-    WITH (
-        OidS = FALSE
-    )
-    TABLESPACE pg_default;
-
-ALTER TABLE public.income_subcategory
-    OWNER to postgres;
-
-CREATE TABLE public.income
-(
-    id bigserial NOT NULL,
-    app_user_id bigserial NOT NULL,
-    payee_id bigserial NOT NULL,
-    pay_source_id bigserial NOT NULL,
-    title character varying,
-    description character varying,
-    amount decimal NOT NULL,
-    currency_id character varying,
-    payment_date timestamp,
-    creation_date timestamp,
-    category_id bigserial NOT NULL,
-    subcategory_id bigserial NOT NULL,
-    PRIMARY KEY (id)
-)
-    WITH (
-        OidS = FALSE
-    )
-    TABLESPACE pg_default;
-
-ALTER TABLE public.income
+ALTER TABLE public.transaction
     OWNER to postgres;
 
 CREATE TABLE public.payee
@@ -146,7 +89,7 @@ CREATE TABLE public.payee
 ALTER TABLE public.payee
     OWNER to postgres;
 
-        CREATE TABLE public.pay_source
+CREATE TABLE public.pay_source
 (
     id bigserial NOT NULL,
     name character varying,

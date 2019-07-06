@@ -12,13 +12,13 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "income_category")
-public class IncomeCategory {
+@Table(name = "transaction_category")
+public class TransactionCategory {
 
     @Id
     @Column(name = "id", columnDefinition = "NUMERIC(19,0)")
-    @SequenceGenerator(name="income_category_id_seq", sequenceName="income_category_id_seq")
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="income_category_id_seq")
+    @SequenceGenerator(name="transaction_category_id_seq", sequenceName="transaction_category_id_seq")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="transaction_category_id_seq")
     private Long id;
 
     @NotNull

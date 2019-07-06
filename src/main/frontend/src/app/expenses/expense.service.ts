@@ -11,6 +11,10 @@ export class ExpenseService {
   }
 
   getExpenses() {
-    return this.http.get('http://localhost:8090/api/expenses/');
+    return this.http.get('http://localhost:8090/api/transactions');
+  }
+
+  deleteExpense(id: number) {
+    return this.http.delete('http://localhost:8090/api/transactions/' + id.toString());
   }
 }

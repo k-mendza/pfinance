@@ -7,8 +7,8 @@ import java.util.List;
 
 @Data
 @AllArgsConstructor
-public class ExpenseListDTO {
+public class TransactionListDTO {
 
-    List<ExpenseDTO> expenses;
+    List<TransactionDTO> transactions;
 
 }

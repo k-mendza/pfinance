@@ -1,7 +1,7 @@
 package com.penance.pfinance.controllers;
 
-import com.penance.pfinance.api.DTO.ExpenseDTO;
-import com.penance.pfinance.services.ExpenseService;
+import com.penance.pfinance.api.DTO.TransactionDTO;
+import com.penance.pfinance.services.TransactionService;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -22,15 +22,15 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
-public class ExpenseControllerTest {
+public class TransactionControllerTest {
 
     public static final Integer ID = 1;
 
     @Mock
-    ExpenseService expenseService;
+    TransactionService transactionService;
 
     @InjectMocks
-    ExpenseController expenseController;
+    TransactionController transactionController;
 
     MockMvc mockMvc;
 
@@ -38,36 +38,36 @@ public class ExpenseControllerTest {
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
 
-        mockMvc = MockMvcBuilders.standaloneSetup(expenseController).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(transactionController).build();
 
     }
 
     @Test
     public void testListCategories() throws Exception {
-        ExpenseDTO expense1 = new ExpenseDTO();
-        expense1.setId(1l);
+        TransactionDTO trans1 = new TransactionDTO();
+        trans1.setId(1l);
 
-        ExpenseDTO expense2 = new ExpenseDTO();
-        expense2.setId(2l);
+        TransactionDTO trans2 = new TransactionDTO();
+        trans2.setId(2l);
 
-        List<ExpenseDTO> categories = Arrays.asList(expense1, expense2);
+        List<TransactionDTO> categories = Arrays.asList(trans1, trans2);
 
-        when(expenseService.getAllExpenses()).thenReturn(categories);
+        when(transactionService.getAllTransactions()).thenReturn(categories);
 
-        mockMvc.perform(get("/api/expenses/")
+        mockMvc.perform(get("/api/transactions")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.expenses", hasSize(2)));
+                .andExpect(jsonPath("$.transactions", hasSize(2)));
     }
 
     @Test
     public void testGetByNameCategories() throws Exception {
-        ExpenseDTO expense1 = new ExpenseDTO();
-        expense1.setId(1l);
+        TransactionDTO trans1 = new TransactionDTO();
+        trans1.setId(1l);
 
-        when(expenseService.getExpenseById(anyLong())).thenReturn(expense1);
+        when(transactionService.getTransactionById(anyLong())).thenReturn(trans1);
 
-        mockMvc.perform(get("/api/expenses/1")
+        mockMvc.perform(get("/api/transactions/1")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id", equalTo(ID)));
