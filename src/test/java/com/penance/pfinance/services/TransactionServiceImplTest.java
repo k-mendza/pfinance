@@ -78,4 +78,24 @@ public class TransactionServiceImplTest {
         assertEquals(transactionDTO.getAmount(), savedDTO.getAmount());
         assertEquals("/api/v1/transactions/1", savedDTO.getTransactionUrl());
     }
+
+    @Test
+    public void saveTransactionByDTO() throws Exception {
+
+        //given
+        TransactionDTO transactionDTO = new TransactionDTO();
+        transactionDTO.setAmount((float) 99.00);
+
+        Transaction savedTransaction = new Transaction();
+        savedTransaction.setAmount(transactionDTO.getAmount());
+        savedTransaction.setId(1L);
+
+        //when
+        when(transactionRepository.save(any(Transaction.class))).thenReturn(savedTransaction);
+        TransactionDTO savedDTO = transactionService.saveTransactionByDTO(1L, transactionDTO);
+
+        //then
+        assertEquals(transactionDTO.getAmount(), savedDTO.getAmount());
+        assertEquals("/api/v1/transactions/1", savedDTO.getTransactionUrl());
+    }
 }

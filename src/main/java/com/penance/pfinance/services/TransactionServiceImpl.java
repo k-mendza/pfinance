@@ -35,21 +35,14 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public TransactionDTO createNewTransaction(TransactionDTO transactionDTO) {
-
-        Transaction transaction = transactionMapper.transactionDTOToTransaction(transactionDTO);
-
-        Transaction savedTransaction = transactionRepository.save(transaction);
-
-        TransactionDTO returnDTO = transactionMapper.transactionToTransactionDTO(savedTransaction);
-
-        returnDTO.setTransactionUrl("/api/v1/transactions/" + savedTransaction.getId());
-
-        return returnDTO;
+        return saveAndReturnDTO(transactionMapper.transactionDTOToTransaction(transactionDTO));
     }
 
     @Override
     public TransactionDTO saveTransactionByDTO(Long id, TransactionDTO transactionDTO) {
-        return null;
+        Transaction transaction = transactionMapper.transactionDTOToTransaction(transactionDTO);
+        transaction.setId(id);
+        return saveAndReturnDTO(transaction);
     }
 
     @Override
@@ -60,5 +53,14 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     public void deleteTransactionById(Long id) {
         transactionRepository.deleteById(id);
+    }
+
+    private TransactionDTO saveAndReturnDTO(Transaction transaction) {
+        Transaction savedTransaction = transactionRepository.save(transaction);
+        TransactionDTO returnDTO = transactionMapper.transactionToTransactionDTO(savedTransaction);
+
+        returnDTO.setTransactionUrl("/api/v1/transactions/" + savedTransaction.getId());
+
+        return returnDTO;
     }
 }
