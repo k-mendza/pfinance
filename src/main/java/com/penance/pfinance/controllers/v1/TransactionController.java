@@ -45,4 +45,8 @@ public class TransactionController {
         return new ResponseEntity<>(transactionService.createNewTransaction(transactionDTO), HttpStatus.CREATED);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<TransactionDTO> updateTransaction(@PathVariable Long id, @RequestBody TransactionDTO transactionDTO){
+        return new ResponseEntity<>(transactionService.saveTransactionByDTO(id ,transactionDTO), HttpStatus.OK);
+    }
 }
