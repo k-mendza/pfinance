@@ -52,4 +52,6 @@ public class Transaction {
 
     @ManyToOne
     private TransactionSubcategory subcategory;
+
+    private String transactionUrl;
 }
