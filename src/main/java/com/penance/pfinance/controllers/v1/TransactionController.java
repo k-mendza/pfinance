@@ -1,6 +1,7 @@
 package com.penance.pfinance.controllers.v1;
 
 import com.penance.pfinance.api.v1.DTO.TransactionDTO;
+import com.penance.pfinance.model.Transaction;
 import com.penance.pfinance.services.TransactionService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,6 +37,12 @@ public class TransactionController {
 
         transactionService.deleteTransactionById(id);
 
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @PostMapping
+    public ResponseEntity<TransactionDTO> createNewTransaction(@RequestBody TransactionDTO transactionDTO){
+        return new ResponseEntity<>(transactionService.createNewTransaction(transactionDTO), HttpStatus.CREATED);
+    }
+
 }

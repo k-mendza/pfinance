@@ -1,8 +1,6 @@
 package com.penance.pfinance.controllers.v1;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.penance.pfinance.api.v1.DTO.TransactionDTO;
-import com.penance.pfinance.controllers.v1.TransactionController;
 import com.penance.pfinance.services.TransactionService;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,8 +17,7 @@ import java.util.List;
 import static org.hamcrest.Matchers.*;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
@@ -94,13 +91,13 @@ public class TransactionControllerTest extends AbstractRestControllerTest{
 
         //then
 
-        mockMvc.perform(put("/api/v1/transactions/")
+        mockMvc.perform(post("/api/v1/transactions/")
             .contentType(MediaType.APPLICATION_JSON)
             .content(asJsonString(transaction)))
         .andExpect(status().isCreated())
-        .andExpect(jsonPath("$.id", equalTo("1")))
-        .andExpect(jsonPath("$.amount", equalTo((float) 99.99)))
-        .andExpect(jsonPath("$.transaction_url", equalTo("/api/v1/transaction/1")));
+        .andExpect(jsonPath("$.id", equalTo(1)))
+        .andExpect(jsonPath("$.amount", equalTo(99.99)))
+        .andExpect(jsonPath("$.transactionUrl", equalTo("/api/v1/transaction/1")));
     }
 
 
