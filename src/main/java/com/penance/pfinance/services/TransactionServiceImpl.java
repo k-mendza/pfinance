@@ -38,7 +38,13 @@ public class TransactionServiceImpl implements TransactionService {
 
         Transaction transaction = transactionMapper.transactionDTOToTransaction(transactionDTO);
 
-        return null;
+        Transaction savedTransaction = transactionRepository.save(transaction);
+
+        TransactionDTO returnDTO = transactionMapper.transactionToTransactionDTO(savedTransaction);
+
+        returnDTO.setTransactionUrl("/api/v1/transactions/" + savedTransaction.getId());
+
+        return returnDTO;
     }
 
     @Override

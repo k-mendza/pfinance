@@ -30,4 +30,6 @@ public class TransactionDTO {
     private String categoryName;
 
     private String subcategoryName;
+
+    private String transactionUrl;
 }
