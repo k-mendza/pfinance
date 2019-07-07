@@ -1,5 +1,6 @@
-package com.penance.pfinance.controllers;
+package com.penance.pfinance.controllers.v1;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.penance.pfinance.api.v1.DTO.TransactionDTO;
 import com.penance.pfinance.controllers.v1.TransactionController;
 import com.penance.pfinance.services.TransactionService;
@@ -15,15 +16,15 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.*;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
-public class TransactionControllerTest {
+public class TransactionControllerTest extends AbstractRestControllerTest{
 
     public static final Integer ID = 1;
 
@@ -73,5 +74,34 @@ public class TransactionControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id", equalTo(ID)));
     }
-    
+
+    @Test
+    public void createNewTransaction() throws Exception {
+
+        //given
+        TransactionDTO transaction = new TransactionDTO();
+        transaction.setId(1L);
+        transaction.setAmount((float) 99.99);
+
+
+        TransactionDTO returnDTO = new TransactionDTO();
+        returnDTO.setTransactionUrl("/api/v1/transaction/1");
+        returnDTO.setAmount(transaction.getAmount());
+        returnDTO.setId(transaction.getId());
+        //when
+
+        when(transactionService.createNewTransaction(transaction)).thenReturn(returnDTO);
+
+        //then
+
+        mockMvc.perform(put("/api/v1/transactions/")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(asJsonString(transaction)))
+        .andExpect(status().isCreated())
+        .andExpect(jsonPath("$.id", equalTo("1")))
+        .andExpect(jsonPath("$.amount", equalTo((float) 99.99)))
+        .andExpect(jsonPath("$.transaction_url", equalTo("/api/v1/transaction/1")));
+    }
+
+
 }

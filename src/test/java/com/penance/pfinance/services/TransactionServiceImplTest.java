@@ -18,7 +18,7 @@ import static junit.framework.TestCase.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
-public class TransactionServiceTest {
+public class TransactionServiceImplTest {
 
     TransactionService transactionService;
 
@@ -72,6 +72,7 @@ public class TransactionServiceTest {
         //when
         when(transactionRepository.save(any(Transaction.class))).thenReturn(savedTransaction);
         TransactionDTO savedDTO = transactionService.createNewTransaction(transactionDTO);
+
         //then
         assertEquals(transactionDTO.getId(), savedDTO.getId());
         assertEquals(transactionDTO.getAmount(), savedDTO.getAmount());
