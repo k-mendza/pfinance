@@ -1,7 +1,6 @@
 package com.penance.pfinance.controllers.v1;
 
 import com.penance.pfinance.api.v1.DTO.TransactionDTO;
-import com.penance.pfinance.model.Transaction;
 import com.penance.pfinance.services.TransactionService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

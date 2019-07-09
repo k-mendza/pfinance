@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -26,5 +27,10 @@ public class AppUserController {
     public ResponseEntity<List<AppUserDTO>> getAllAppUsers(){
         List<AppUserDTO> dtoList = appUserService.getAllAppUsers();
         return new ResponseEntity<>( dtoList, HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<AppUserDTO> getAppUserById(@PathVariable Long id){
+        return new ResponseEntity<>(appUserService.getAppUserById(id), HttpStatus.OK);
     }
 }
