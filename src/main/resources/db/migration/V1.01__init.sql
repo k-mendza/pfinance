@@ -61,6 +61,9 @@ CREATE TABLE public.transaction
     currency_id character varying,
     payment_date timestamp,
     creation_date timestamp,
+    flg_tax boolean,
+    flg_obligatory boolean,
+    flg_cyclical boolean,
     category_id bigserial NOT NULL,
     subcategory_id bigserial NOT NULL,
     PRIMARY KEY (id)

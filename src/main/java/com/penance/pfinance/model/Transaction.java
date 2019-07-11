@@ -47,11 +47,18 @@ public class Transaction {
     @Column(name = "creation_date", columnDefinition = "TIMESTAMP")
     private LocalDate creationDate;
 
+    @Column(name = "flg_tax")
+    private boolean flgTax;
+
+    @Column(name = "flg_obligatory")
+    private boolean flgObligatory;
+
+    @Column(name = "flg_cyclical")
+    private boolean flgCyclical;
+
     @ManyToOne
     private TransactionCategory category;
 
     @ManyToOne
     private TransactionSubcategory subcategory;
-
-    private String transactionUrl;
 }
