@@ -2,6 +2,7 @@ package com.penance.pfinance.services;
 
 import com.penance.pfinance.api.v1.DTO.AppUserDTO;
 import com.penance.pfinance.api.v1.DTO.TransactionDTO;
+import com.penance.pfinance.api.v1.mappers.CurrencyMapper;
 import com.penance.pfinance.api.v1.mappers.TransactionMapper;
 import com.penance.pfinance.model.*;
 import com.penance.pfinance.repositories.TransactionRepository;
@@ -28,7 +29,7 @@ public class TransactionServiceImplTest {
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        transactionService = new TransactionServiceImpl(TransactionMapper.INSTANCE, currencyMapper, transactionRepository);
+        transactionService = new TransactionServiceImpl(TransactionMapper.INSTANCE, CurrencyMapper.INSTANCE, transactionRepository);
     }
 
     @Test
