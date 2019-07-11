@@ -28,7 +28,7 @@ public class TransactionServiceImplTest {
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        transactionService = new TransactionServiceImpl(TransactionMapper.INSTANCE, transactionRepository);
+        transactionService = new TransactionServiceImpl(TransactionMapper.INSTANCE, currencyMapper, transactionRepository);
     }
 
     @Test

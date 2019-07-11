@@ -1,6 +1,7 @@
 package com.penance.pfinance.services;
 
 import com.penance.pfinance.api.v1.DTO.TransactionDTO;
+import com.penance.pfinance.api.v1.mappers.CurrencyMapper;
 import com.penance.pfinance.api.v1.mappers.TransactionMapper;
 import com.penance.pfinance.model.Transaction;
 import com.penance.pfinance.repositories.TransactionRepository;
@@ -13,10 +14,12 @@ import java.util.stream.Collectors;
 public class TransactionServiceImpl implements TransactionService {
 
     private final TransactionMapper transactionMapper;
+    private final CurrencyMapper currencyMapper;
     private final TransactionRepository transactionRepository;
 
-    public TransactionServiceImpl(TransactionMapper transactionMapper, TransactionRepository transactionRepository) {
+    public TransactionServiceImpl(TransactionMapper transactionMapper, CurrencyMapper currencyMapper, TransactionRepository transactionRepository) {
         this.transactionMapper = transactionMapper;
+        this.currencyMapper = currencyMapper;
         this.transactionRepository = transactionRepository;
     }
 
@@ -47,7 +50,17 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public TransactionDTO patchTransaction(Long id, TransactionDTO transactionDTO) {
-        return null;
+        return transactionRepository.findById(id).map(transaction -> {
+            if (transactionDTO.getAmount() != null) {
+                transaction.setAmount(transactionDTO.getAmount());
+            }
+
+            if (transactionDTO.getCurrencyDTO() != null) {
+                transaction.setCurrency(currencyMapper.currencyDTOToCurrency(transactionDTO.getCurrencyDTO()));
+            }
+
+            return transactionMapper.transactionToTransactionDTO(transactionRepository.save(transaction));
+        }).orElseThrow(RuntimeException::new);
     }
 
     @Override

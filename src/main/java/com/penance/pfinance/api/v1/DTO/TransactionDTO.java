@@ -21,7 +21,7 @@ public class TransactionDTO {
 
     private Float amount;
 
-    private String currencyId;
+    private CurrencyDTO currencyDTO;
 
     private LocalDate paymentDate;
 
