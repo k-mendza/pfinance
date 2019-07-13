@@ -3,6 +3,7 @@ package com.penance.pfinance.services;
 import com.penance.pfinance.api.v1.DTO.TransactionDTO;
 import com.penance.pfinance.api.v1.mappers.CurrencyMapper;
 import com.penance.pfinance.api.v1.mappers.TransactionMapper;
+import com.penance.pfinance.controllers.v1.TransactionController;
 import com.penance.pfinance.model.Transaction;
 import com.penance.pfinance.repositories.TransactionRepository;
 import org.springframework.stereotype.Service;
@@ -27,13 +28,22 @@ public class TransactionServiceImpl implements TransactionService {
     public List<TransactionDTO> getAllTransactions() {
         return transactionRepository.findAll()
                 .stream()
-                .map(transactionMapper::transactionToTransactionDTO)
+                .map(transaction -> {
+                    TransactionDTO transactionDTO = transactionMapper.transactionToTransactionDTO(transaction);
+                    transactionDTO.setTransactionUrl(getTransactionUrl(transaction.getId()));
+                    return transactionDTO;
+                })
                 .collect(Collectors.toList());
     }
 
     @Override
     public TransactionDTO getTransactionById(Long id) {
-        return transactionMapper.transactionToTransactionDTO(transactionRepository.findById(id).orElse(null));
+        return transactionRepository.findById(id)
+                .map(transactionMapper::transactionToTransactionDTO)
+                .map(transactionDTO -> {
+                    transactionDTO.setTransactionUrl(getTransactionUrl(id));
+                    return transactionDTO;
+                }).orElseThrow(RuntimeException::new);
     }
 
     @Override
@@ -61,7 +71,7 @@ public class TransactionServiceImpl implements TransactionService {
 
             TransactionDTO returnDTO = transactionMapper.transactionToTransactionDTO(transactionRepository.save(transaction));
 
-            returnDTO.setTransactionUrl("/api/v1/transactions/" + id);
+            returnDTO.setTransactionUrl(getTransactionUrl(id));
 
 
             return returnDTO;
@@ -77,8 +87,12 @@ public class TransactionServiceImpl implements TransactionService {
         Transaction savedTransaction = transactionRepository.save(transaction);
         TransactionDTO returnDTO = transactionMapper.transactionToTransactionDTO(savedTransaction);
 
-        returnDTO.setTransactionUrl("/api/v1/transactions/" + savedTransaction.getId());
+        returnDTO.setTransactionUrl(getTransactionUrl(savedTransaction.getId()));
 
         return returnDTO;
+    }
+
+    private String getTransactionUrl(Long id){
+        return TransactionController.BASE_URL + "/" + id;
     }
 }

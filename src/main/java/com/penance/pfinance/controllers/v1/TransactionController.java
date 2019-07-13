@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/api/v1/transactions")
+@RequestMapping(TransactionController.BASE_URL)
 @CrossOrigin(origins = "http://localhost:4200")
 public class TransactionController {
+
+    public static final String BASE_URL = "/api/v1/transactions";
 
     private final TransactionService transactionService;
 
