@@ -59,7 +59,12 @@ public class TransactionServiceImpl implements TransactionService {
                 transaction.setCurrency(currencyMapper.currencyDTOToCurrency(transactionDTO.getCurrencyDTO()));
             }
 
-            return transactionMapper.transactionToTransactionDTO(transactionRepository.save(transaction));
+            TransactionDTO returnDTO = transactionMapper.transactionToTransactionDTO(transactionRepository.save(transaction));
+
+            returnDTO.setTransactionUrl("/api/v1/transactions/" + id);
+
+
+            return returnDTO;
         }).orElseThrow(RuntimeException::new);
     }
 
