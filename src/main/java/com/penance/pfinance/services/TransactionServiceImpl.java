@@ -43,7 +43,7 @@ public class TransactionServiceImpl implements TransactionService {
                 .map(transactionDTO -> {
                     transactionDTO.setTransactionUrl(getTransactionUrl(id));
                     return transactionDTO;
-                }).orElseThrow(RuntimeException::new);
+                }).orElseThrow(ResourceNotFoundException::new);
     }
 
     @Override
@@ -75,7 +75,7 @@ public class TransactionServiceImpl implements TransactionService {
 
 
             return returnDTO;
-        }).orElseThrow(RuntimeException::new);
+        }).orElseThrow(ResourceNotFoundException::new);
     }
 
     @Override

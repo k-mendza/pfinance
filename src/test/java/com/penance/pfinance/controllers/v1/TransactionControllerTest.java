@@ -1,6 +1,8 @@
 package com.penance.pfinance.controllers.v1;
 
 import com.penance.pfinance.api.v1.DTO.TransactionDTO;
+import com.penance.pfinance.controllers.RestResponseEntityExceptionHandler;
+import com.penance.pfinance.services.ResourceNotFoundException;
 import com.penance.pfinance.services.TransactionService;
 import org.junit.Before;
 import org.junit.Test;
@@ -37,7 +39,9 @@ public class TransactionControllerTest extends AbstractRestControllerTest{
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
 
-        mockMvc = MockMvcBuilders.standaloneSetup(transactionController).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(transactionController)
+                .setControllerAdvice(new RestResponseEntityExceptionHandler())
+                .build();
 
     }
 
@@ -100,5 +104,12 @@ public class TransactionControllerTest extends AbstractRestControllerTest{
         .andExpect(jsonPath("$.transactionUrl", equalTo("/api/v1/transaction/1")));
     }
 
+    @Test
+    public void testGetByIdNotFound() throws Exception {
+        when(transactionService.getTransactionById(anyLong())).thenThrow(ResourceNotFoundException.class);
 
+        mockMvc.perform(get(TransactionController.BASE_URL + "/222")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound());
+    }
 }
