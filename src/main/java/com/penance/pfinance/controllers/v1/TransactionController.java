@@ -1,15 +1,12 @@
 package com.penance.pfinance.controllers.v1;
 
 import com.penance.pfinance.api.v1.DTO.TransactionDTO;
+import com.penance.pfinance.api.v1.DTO.TransactionListDTO;
 import com.penance.pfinance.services.TransactionService;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
-@Controller
+@RestController
 @RequestMapping(TransactionController.BASE_URL)
 @CrossOrigin(origins = "http://localhost:4200")
 public class TransactionController {
@@ -23,31 +20,38 @@ public class TransactionController {
     }
 
     @GetMapping
-    public ResponseEntity<List<TransactionDTO>> getAllTransactions(){
-        List<TransactionDTO> dtoList = transactionService.getAllTransactions();
-        return new ResponseEntity<>( dtoList, HttpStatus.OK);
+    @ResponseStatus(HttpStatus.OK)
+    public TransactionListDTO getAllTransactions(){
+        TransactionListDTO transactionListDTO = new TransactionListDTO();
+        transactionListDTO.setTransactionDTOList(transactionService.getAllTransactions());
+        return transactionListDTO ;
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<TransactionDTO> getTransactionById(@PathVariable Long id){
-        return new ResponseEntity<>(transactionService.getTransactionById(id), HttpStatus.OK);
+    @ResponseStatus(HttpStatus.OK)
+    public TransactionDTO getTransactionById(@PathVariable Long id){
+        TransactionDTO transactionDTO = transactionService.getTransactionById(id);
+        return transactionDTO;
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteTransaction(@PathVariable Long id){
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteTransaction(@PathVariable Long id){
 
         transactionService.deleteTransactionById(id);
-
-        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<TransactionDTO> createNewTransaction(@RequestBody TransactionDTO transactionDTO){
-        return new ResponseEntity<>(transactionService.createNewTransaction(transactionDTO), HttpStatus.CREATED);
+    @ResponseStatus(HttpStatus.CREATED)
+    public TransactionDTO createNewTransaction(@RequestBody TransactionDTO transactionDTO){
+        TransactionDTO createdTransaction = transactionService.createNewTransaction(transactionDTO);
+        return createdTransaction;
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<TransactionDTO> updateTransaction(@PathVariable Long id, @RequestBody TransactionDTO transactionDTO){
-        return new ResponseEntity<>(transactionService.saveTransactionByDTO(id ,transactionDTO), HttpStatus.OK);
+    @ResponseStatus(HttpStatus.OK)
+    public TransactionDTO updateTransaction(@PathVariable Long id, @RequestBody TransactionDTO transactionDTO){
+        TransactionDTO updatedTransactionDTO = transactionService.saveTransactionByDTO(id ,transactionDTO);
+        return updatedTransactionDTO;
     }
 }

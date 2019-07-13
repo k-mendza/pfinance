@@ -239,9 +239,9 @@ INSERT INTO pay_source (name, description, creation_date)
 VALUES ('Karta IDEA', 'Karta płatnicza IDEA Banku', current_date);
 
 -- TRANSACTIONS --
-INSERT INTO transaction (app_user_id, payee_id, pay_source_id, title, description, amount, currency_id, creation_date, category_id, subcategory_id)
-VALUES (1, 1, 1, 'Zakupy', 'Biedronka', 50.0, 'PLN', current_date, 1, 1);
+INSERT INTO transaction (app_user_id, payee_id, pay_source_id, title, description, amount, currency_id, flg_tax, flg_obligatory, flg_cyclical, category_id, creation_date, subcategory_id)
+VALUES (1, 1, 1, 'Zakupy', 'Biedronka', 50.0, 'PLN', 'N','N','N', 1, current_date, 1);
 
-INSERT INTO transaction (app_user_id, payee_id, pay_source_id, title, description, amount, currency_id, creation_date, category_id, subcategory_id)
-VALUES (1, 2, 1, 'Obiad', 'Chińczyk', 20.0, 'PLN', current_date,1, 3);
+INSERT INTO transaction (app_user_id, payee_id, pay_source_id, title, description, amount, currency_id, flg_tax, flg_obligatory, flg_cyclical, category_id, creation_date, subcategory_id)
+VALUES (1, 2, 1, 'Obiad', 'Chińczyk', 20.0, 'PLN', 'N','N','N', 1, current_date, 3);
 commit;
