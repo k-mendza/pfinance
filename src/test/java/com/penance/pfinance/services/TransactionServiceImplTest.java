@@ -17,7 +17,7 @@ import java.util.List;
 
 import static junit.framework.TestCase.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class TransactionServiceImplTest {
 
@@ -98,5 +98,12 @@ public class TransactionServiceImplTest {
         //then
         assertEquals(transactionDTO.getAmount(), savedDTO.getAmount());
         assertEquals("/api/v1/transactions/1", savedDTO.getTransactionUrl());
+    }
+
+    @Test
+    public void deleteTransactionById() throws Exception {
+        Long id = 1L;
+        transactionRepository.deleteById(id);
+        verify(transactionRepository, times(1)).deleteById(anyLong());
     }
 }
