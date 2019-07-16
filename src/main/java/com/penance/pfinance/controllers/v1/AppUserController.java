@@ -5,10 +5,7 @@ import com.penance.pfinance.services.AppUserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -32,5 +29,12 @@ public class AppUserController {
     @GetMapping("/{id}")
     public ResponseEntity<AppUserDTO> getAppUserById(@PathVariable Long id){
         return new ResponseEntity<>(appUserService.getAppUserById(id), HttpStatus.OK);
+    }
+
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public AppUserDTO updateAppUser(@PathVariable Long id, @RequestBody AppUserDTO appUserDTO){
+        AppUserDTO updatedAppUserDTO = appUserService.saveAppUserByDTO(id ,appUserDTO);
+        return updatedAppUserDTO;
     }
 }
