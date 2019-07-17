@@ -27,7 +27,7 @@ public class TransactionDTO {
 
     private LocalDate creationDate;
 
-    private String categoryName;
+    private TransactionCategoryDTO transactionCategoryDTO;
 
     private String subcategoryName;
 

@@ -15,7 +15,7 @@ public interface TransactionMapper {
     @Mapping(source = "transaction.payee.name", target = "payeeName")
     @Mapping(source = "transaction.paySource.name", target = "paySourceName")
     @Mapping(source = "transaction.currency", target = "currencyDTO")
-    @Mapping(source = "transaction.category.name", target = "categoryName")
+    @Mapping(source = "transaction.category", target = "transactionCategoryDTO")
     @Mapping(source = "transaction.subcategory.name", target = "subcategoryName")
     TransactionDTO transactionToTransactionDTO(Transaction transaction);
 
