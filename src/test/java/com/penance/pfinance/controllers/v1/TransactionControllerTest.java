@@ -57,7 +57,7 @@ public class TransactionControllerTest extends AbstractRestControllerTest{
 
         when(transactionService.getAllTransactions()).thenReturn(transactions);
 
-        mockMvc.perform(get("/api/v1/transactions")
+        mockMvc.perform(get(TransactionController.BASE_URL)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.transactions", hasSize(2)));
@@ -70,7 +70,7 @@ public class TransactionControllerTest extends AbstractRestControllerTest{
 
         when(transactionService.getTransactionById(anyLong())).thenReturn(trans1);
 
-        mockMvc.perform(get("/api/v1/transactions/1")
+        mockMvc.perform(get(TransactionController.BASE_URL)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id", equalTo(ID)));
@@ -86,7 +86,7 @@ public class TransactionControllerTest extends AbstractRestControllerTest{
 
 
         TransactionDTO returnDTO = new TransactionDTO();
-        returnDTO.setTransactionUrl("/api/v1/transaction/1");
+        returnDTO.setTransactionUrl(TransactionController.BASE_URL + "/1");
         returnDTO.setAmount(transaction.getAmount());
         returnDTO.setId(transaction.getId());
         //when
@@ -95,13 +95,13 @@ public class TransactionControllerTest extends AbstractRestControllerTest{
 
         //then
 
-        mockMvc.perform(post("/api/v1/transactions/")
+        mockMvc.perform(post(TransactionController.BASE_URL)
             .contentType(MediaType.APPLICATION_JSON)
             .content(asJsonString(transaction)))
         .andExpect(status().isCreated())
         .andExpect(jsonPath("$.id", equalTo(1)))
         .andExpect(jsonPath("$.amount", equalTo(99.99)))
-        .andExpect(jsonPath("$.transactionUrl", equalTo("/api/v1/transaction/1")));
+        .andExpect(jsonPath("$.transactionUrl", equalTo(TransactionController.BASE_URL + "/1")));
     }
 
     @Test
