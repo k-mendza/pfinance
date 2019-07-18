@@ -46,16 +46,16 @@ public class TransactionControllerTest extends AbstractRestControllerTest{
     }
 
     @Test
-    public void testListCategories() throws Exception {
+    public void testListTransactions() throws Exception {
         TransactionDTO trans1 = new TransactionDTO();
         trans1.setId(1l);
 
         TransactionDTO trans2 = new TransactionDTO();
         trans2.setId(2l);
 
-        List<TransactionDTO> categories = Arrays.asList(trans1, trans2);
+        List<TransactionDTO> transactions = Arrays.asList(trans1, trans2);
 
-        when(transactionService.getAllTransactions()).thenReturn(categories);
+        when(transactionService.getAllTransactions()).thenReturn(transactions);
 
         mockMvc.perform(get("/api/v1/transactions")
                 .contentType(MediaType.APPLICATION_JSON))
@@ -64,7 +64,7 @@ public class TransactionControllerTest extends AbstractRestControllerTest{
     }
 
     @Test
-    public void testGetByNameCategories() throws Exception {
+    public void testTransactionsGetById() throws Exception {
         TransactionDTO trans1 = new TransactionDTO();
         trans1.setId(1l);
 
