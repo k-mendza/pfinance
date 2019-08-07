@@ -11,14 +11,14 @@ public interface TransactionMapper {
 
     TransactionMapper INSTANCE = Mappers.getMapper(TransactionMapper.class);
 
-    @Mapping(source = "transaction.appUser.email", target = "appUserDTO.email")
-    @Mapping(source = "transaction.payee.name", target = "payeeName")
-    @Mapping(source = "transaction.paySource.name", target = "paySourceName")
-    @Mapping(source = "transaction.currency", target = "currencyDTO")
-    @Mapping(source = "transaction.category", target = "transactionCategoryDTO")
-    @Mapping(source = "transaction.subcategory.name", target = "subcategoryName")
+//    @Mapping(source = "transaction.appUser.email", target = "appUserDTO.email")
+//    @Mapping(source = "transaction.payee.name", target = "payeeName")
+//    @Mapping(source = "transaction.paySource.name", target = "paySourceName")
+//    @Mapping(source = "transaction.currency", target = "currencyDTO")
+//    @Mapping(source = "transaction.category", target = "transactionCategoryDTO")
+//    @Mapping(source = "transaction.subcategory.name", target = "subcategoryName")
     TransactionDTO transactionToTransactionDTO(Transaction transaction);
 
-    @Mapping(source = "transactionDTO.appUserDTO.email", target = "appUser.email")
+//    @Mapping(source = "transactionDTO.appUserDTO.email", target = "appUser.email")
     Transaction transactionDTOToTransaction(TransactionDTO transactionDTO);
 }

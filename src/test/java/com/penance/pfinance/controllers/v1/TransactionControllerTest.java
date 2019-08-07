@@ -86,7 +86,7 @@ public class TransactionControllerTest extends AbstractRestControllerTest{
 
 
         TransactionDTO returnDTO = new TransactionDTO();
-        returnDTO.setTransactionUrl(TransactionController.BASE_URL + "/1");
+//        returnDTO.setTransactionUrl(TransactionController.BASE_URL + "/1");
         returnDTO.setAmount(transaction.getAmount());
         returnDTO.setId(transaction.getId());
         //when

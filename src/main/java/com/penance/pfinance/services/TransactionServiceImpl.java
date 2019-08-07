@@ -30,7 +30,7 @@ public class TransactionServiceImpl implements TransactionService {
                 .stream()
                 .map(transaction -> {
                     TransactionDTO transactionDTO = transactionMapper.transactionToTransactionDTO(transaction);
-                    transactionDTO.setTransactionUrl(getTransactionUrl(transaction.getId()));
+//                    transactionDTO.setTransactionUrl(getTransactionUrl(transaction.getId()));
                     return transactionDTO;
                 })
                 .collect(Collectors.toList());
@@ -41,7 +41,7 @@ public class TransactionServiceImpl implements TransactionService {
         return transactionRepository.findById(id)
                 .map(transactionMapper::transactionToTransactionDTO)
                 .map(transactionDTO -> {
-                    transactionDTO.setTransactionUrl(getTransactionUrl(id));
+//                    transactionDTO.setTransactionUrl(getTransactionUrl(id));
                     return transactionDTO;
                 }).orElseThrow(ResourceNotFoundException::new);
     }
@@ -65,13 +65,13 @@ public class TransactionServiceImpl implements TransactionService {
                 transaction.setAmount(transactionDTO.getAmount());
             }
 
-            if (transactionDTO.getCurrencyDTO() != null) {
-                transaction.setCurrency(currencyMapper.currencyDTOToCurrency(transactionDTO.getCurrencyDTO()));
-            }
+//            if (transactionDTO.getCurrencyDTO() != null) {
+//                transaction.setCurrency(currencyMapper.currencyDTOToCurrency(transactionDTO.getCurrencyDTO()));
+//            }
 
             TransactionDTO returnDTO = transactionMapper.transactionToTransactionDTO(transactionRepository.save(transaction));
 
-            returnDTO.setTransactionUrl(getTransactionUrl(id));
+//            returnDTO.setTransactionUrl(getTransactionUrl(id));
 
 
             return returnDTO;
@@ -87,7 +87,7 @@ public class TransactionServiceImpl implements TransactionService {
         Transaction savedTransaction = transactionRepository.save(transaction);
         TransactionDTO returnDTO = transactionMapper.transactionToTransactionDTO(savedTransaction);
 
-        returnDTO.setTransactionUrl(getTransactionUrl(savedTransaction.getId()));
+//        returnDTO.setTransactionUrl(getTransactionUrl(savedTransaction.getId()));
 
         return returnDTO;
     }

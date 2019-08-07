@@ -6,6 +6,9 @@ import com.penance.pfinance.services.TransactionService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
 @RequestMapping(TransactionController.BASE_URL)
 @CrossOrigin(origins = "http://localhost:4200")
@@ -21,10 +24,10 @@ public class TransactionController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public TransactionListDTO getAllTransactions(){
-        TransactionListDTO transactionListDTO = new TransactionListDTO();
-        transactionListDTO.setTransactionDTOList(transactionService.getAllTransactions());
-        return transactionListDTO ;
+    public List<TransactionDTO> getAllTransactions(){
+//        TransactionListDTO transactionListDTO = new TransactionListDTO();
+//        transactionListDTO.setTransactionDTOList(transactionService.getAllTransactions());
+        return transactionService.getAllTransactions();
     }
 
     @GetMapping("/{id}")
